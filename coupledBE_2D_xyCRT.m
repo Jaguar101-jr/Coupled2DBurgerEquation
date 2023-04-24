@@ -19,8 +19,8 @@ nt = 120;
 c = 1;
 dx = 2/(nx-1);
 dy = 2/(ny-1);
-sigma = .0009;
-nu = 0.01;         %%viscosity
+sigma = 0.0009;
+nu = 0.001;         %%viscosity
 dt = sigma*dx*dy/nu;    %%time step
 
 %% create the computational grid
@@ -44,7 +44,7 @@ u(0.5/dy:1/dy+1, 0.5/dx:1/dx+1) = 2;
 % surf(x,y,u)    % to test if the mesh metrices are generated
 
 %% CD spatial & temporal discritization loop
-% update the solution [u(i,j)] using the initial conditions [un] instead of [u] and [v]
+% update the solution [u(i,j)] using the initial conditions [un] and [vn] instead of [u] and [v]
 
 for n=1:nt+1
     un = u;
@@ -70,13 +70,15 @@ for n=1:nt+1
     %visualise the solution
     surf(x,y,u);
 %     axis([0 Lx 0 Ly]);
-%     xlabel('horizental axis');
-%     ylabel('vertical axis');
-%     colorbar; 
+    xlabel('horizental axis');
+    ylabel('vertical axis');
+    zlabel('velocity gradient');
+    colorbar; 
+    % bartitle('velocity gradient (m/s)');
 %     c = colorbar;
 %     c.Label.String = 'Velocity Field (unit/sec.)';
 %     set(gca, 'ydir', 'norm');
-%     title('Coupled_2D_BurgerEquation');
+    title('Coupled 2D BurgerEquation');
     pause(0.1);
 
      % Write each frame to the file
