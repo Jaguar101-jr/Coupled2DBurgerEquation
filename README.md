@@ -1,1 +1,1 @@
-# Coupled2DBurgerEquation
+# Coupled_2D_Burgers' Equation
